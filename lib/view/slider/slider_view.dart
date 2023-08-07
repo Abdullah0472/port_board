@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,7 +51,6 @@ class _SliderViewState extends State<SliderView> {
   int _currentSlide = 0;
 
 
-
   @override
   Widget build(BuildContext context) {
     return
@@ -89,24 +90,28 @@ class _SliderViewState extends State<SliderView> {
                           return Builder(
                             builder: (BuildContext context) {
                               return Container(
-                                padding: const EdgeInsets.only(top:80,left: 20,right: 20),
+                                padding:  EdgeInsets.only(
+                                    top:image['url']! == ImageAssets.portBoard ? 140.0 : 80.0,
+                                    left: 15,
+                                    right: 15),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Image.asset(
                                       image['url']!,
-                                      height: 350.0,
+                                      height: image['url']! == ImageAssets.portBoard ? 150.0 : 350.0, // Adjust the height here
                                     ),
-                                    // const SizedBox(
-                                    //   height: 20,
-                                    // ),
+                                     SizedBox(
+                                      height: image['url']! == ImageAssets.portBoard ? 30.0 : 10.0,
+                                    ),
                                     Text(
 
                                       image['caption']!,
                                       style: const TextStyle(
-                                        color: AppColor.greyColor,
+                                        fontFamily: "RobotoLight",
+                                        color: AppColor.textGreyColor,
                                         fontSize: 13.0,
-                                        fontWeight: FontWeight.w500,
+                                        //fontWeight: FontWeight.w500,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
